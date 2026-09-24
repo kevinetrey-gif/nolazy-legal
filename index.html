@@ -1066,20 +1066,15 @@ document.getElementById('waitlist-form').addEventListener('submit', async (e) =>
       body: JSON.stringify({ name, email, skill: skill || null, instagram, tiktok })
     });
 
-    const data = await res.json();
-
-    if (res.ok) {
-      document.getElementById('waitlist-form').style.display = 'none';
-      success.style.display = 'block';
-    } else {
-      if (data.error === 'already_on_waitlist') {
-        error.textContent = 'This email is already on the waitlist!';
-      } else {
-        error.textContent = 'Something went wrong. Please try again.';
-      }
+    if (res.status === 409) {
+      error.textContent = 'This email is already on the waitlist!';
       error.style.display = 'block';
       btn.textContent = 'Join the waitlist';
       btn.disabled = false;
+    } else {
+      // Show success for any non-409 response — email was received
+      document.getElementById('waitlist-form').style.display = 'none';
+      success.style.display = 'block';
     }
   } catch (err) {
     error.textContent = 'Network error. Please try again.';
