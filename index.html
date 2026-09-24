@@ -1041,8 +1041,7 @@
 </div>
 
 <script>
-const SUPABASE_URL = 'https://iodwhoqfrmaepbbeqcaj.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlvZHdob3Fmcm1hZXBiYmVxY2FqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNjI0NTcsImV4cCI6MjA4NzczODQ1N30.nqoiq_1SqbxWmTVf3kiJOpwkTJPQ1Pb5bzZ1mTr6gN8';
+const RAILWAY_URL = 'https://nolazy-backend-production.up.railway.app';
 
 document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -1061,23 +1060,19 @@ document.getElementById('waitlist-form').addEventListener('submit', async (e) =>
   error.style.display = 'none';
 
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+    const res = await fetch(`${RAILWAY_URL}/api/waitlist/join`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_ANON_KEY,
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'Prefer': 'return=minimal'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, skill: skill || null, instagram, tiktok })
     });
+
+    const data = await res.json();
 
     if (res.ok) {
       document.getElementById('waitlist-form').style.display = 'none';
       success.style.display = 'block';
     } else {
-      const data = await res.json();
-      if (data.code === '23505') {
+      if (data.error === 'already_on_waitlist') {
         error.textContent = 'This email is already on the waitlist!';
       } else {
         error.textContent = 'Something went wrong. Please try again.';
