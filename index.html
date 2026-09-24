@@ -808,7 +808,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">NoLazy</div>
-  <a href="#download" class="nav-cta">Download Free</a>
+  <a href="#download" class="nav-cta">Join Waitlist</a>
 </nav>
 
 <!-- HERO -->
@@ -820,23 +820,12 @@
       NoLazy turns your skill into a structured income path — with an AI Mentor, daily focus sessions, and video lessons built around what clients actually pay for.
     </p>
     <div class="hero-actions">
-      <a href="#download" class="btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        App Store
-      </a>
+      <a href="#download" class="btn-primary">Join the waitlist →</a>
       <a href="#how" class="btn-secondary">
         See how it works →
       </a>
     </div>
-    <div class="hero-social-proof">
-      <div class="avatars">
-        <span>M</span>
-        <span>A</span>
-        <span>R</span>
-        <span>K</span>
-      </div>
-      <div class="social-text"><strong>500,000+ learners</strong> already on their path</div>
-    </div>
+
   </div>
 
   <div class="hero-right">
@@ -938,6 +927,7 @@
 </section>
 
 <!-- PRICING -->
+<!-- PRICING HIDDEN PRE-LAUNCH
 <section id="pricing">
   <div class="section-label">Pricing</div>
   <h2>Simple pricing.<br>Real value.</h2>
@@ -990,48 +980,120 @@
     </div>
   </div>
 </section>
+-->
 
-<!-- TESTIMONIALS -->
-<div class="testimonials">
-  <div class="testimonials-inner">
-    <div class="section-label">What learners say</div>
-    <h2>The results speak<br>for themselves.</h2>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"I'd been watching YouTube tutorials for months. NoLazy was the first thing that actually told me what to do with what I'd learned. Got my first client in week 10."</div>
-        <div class="testimonial-author">Marcus T.</div>
-        <div class="testimonial-skill">Graphic Design path</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"The AI Mentor is what got me. I could ask it anything about my specific situation and it actually helped. Not some generic response — real coaching."</div>
-        <div class="testimonial-author">Aisha K.</div>
-        <div class="testimonial-skill">Copywriting path</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"The weekly challenge is the part I looked forward to most. It pushed me to actually do something instead of just watching. That's what makes this different."</div>
-        <div class="testimonial-author">James R.</div>
-        <div class="testimonial-skill">Video Editing path</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CTA -->
+<!-- CTA / WAITLIST -->
 <div class="cta-section" id="download">
   <div class="cta-glow"></div>
-  <div class="section-label" style="justify-content: center;">Get started today</div>
+  <div class="section-label" style="justify-content: center;">Coming soon</div>
   <h2>Your skill deserves<br>to <em style="font-style:normal;background:linear-gradient(135deg,var(--purple),var(--purple3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">make you money.</em></h2>
-  <p>7-day free trial. Cancel anytime.</p>
-  <a href="https://apps.apple.com/app/nolazy/id6814724756" class="btn-primary" style="display:inline-flex;">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-    Download on App Store
-  </a>
-  <div class="cta-note">Available on iOS · Android coming soon</div>
+  <p style="margin-bottom:40px;">Join the waitlist. Be first to know when NoLazy launches.</p>
+
+  <form id="waitlist-form" style="max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:14px;">
+    <input type="text" id="wl-name" placeholder="Your name" required
+      style="background:#1A1628;border:1px solid #2A2440;border-radius:50px;padding:16px 24px;color:#F0EEF8;font-size:15px;outline:none;font-family:Inter,sans-serif;width:100%;">
+    <input type="email" id="wl-email" placeholder="Your email" required
+      style="background:#1A1628;border:1px solid #2A2440;border-radius:50px;padding:16px 24px;color:#F0EEF8;font-size:15px;outline:none;font-family:Inter,sans-serif;width:100%;">
+    <select id="wl-skill"
+      style="background:#1A1628;border:1px solid #2A2440;border-radius:50px;padding:16px 24px;color:#8B88A8;font-size:15px;outline:none;font-family:Inter,sans-serif;width:100%;appearance:none;cursor:pointer;">
+      <option value="" disabled selected>What skill do you want to learn?</option>
+      <option>AI Skills</option>
+      <option>Animation & 3D</option>
+      <option>App Development</option>
+      <option>Art & Illustration</option>
+      <option>Content Creation</option>
+      <option>Copywriting</option>
+      <option>Digital Marketing</option>
+      <option>E-commerce & Dropshipping</option>
+      <option>Education & Coaching</option>
+      <option>Finance & Accounting</option>
+      <option>Freelance Business & Admin</option>
+      <option>Game Development</option>
+      <option>Graphic Design</option>
+      <option>Handmade & Craft Business</option>
+      <option>Languages</option>
+      <option>Music & Audio</option>
+      <option>Photography</option>
+      <option>Real Estate</option>
+      <option>Sales</option>
+      <option>Streaming & Podcasting</option>
+      <option>Trades & Local Services</option>
+      <option>Trading</option>
+      <option>UX/UI Design</option>
+      <option>Video & Cinema</option>
+      <option>Web Development</option>
+      <option>Writing & Publishing</option>
+    </select>
+    <input type="text" id="wl-instagram" placeholder="Instagram handle (optional)"
+      style="background:#1A1628;border:1px solid #2A2440;border-radius:50px;padding:16px 24px;color:#F0EEF8;font-size:15px;outline:none;font-family:Inter,sans-serif;width:100%;">
+    <input type="text" id="wl-tiktok" placeholder="TikTok handle (optional)"
+      style="background:#1A1628;border:1px solid #2A2440;border-radius:50px;padding:16px 24px;color:#F0EEF8;font-size:15px;outline:none;font-family:Inter,sans-serif;width:100%;">
+    <button type="submit" id="wl-btn" class="btn-primary" style="border:none;cursor:pointer;justify-content:center;font-size:16px;">
+      Join the waitlist
+    </button>
+    <div id="wl-success" style="display:none;color:#22c55e;font-size:15px;text-align:center;padding:12px;">
+      🎉 You're on the list! We'll notify you at launch.
+    </div>
+    <div id="wl-error" style="display:none;color:#ef4444;font-size:14px;text-align:center;padding:8px;"></div>
+  </form>
+
+  <div class="cta-note" style="margin-top:24px;">No spam. Just your launch notification.</div>
 </div>
+
+<script>
+const SUPABASE_URL = 'https://iodwhoqfrmaepbbeqcaj.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlvZHdob3Fmcm1hZXBiYmVxY2FqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNjI0NTcsImV4cCI6MjA4NzczODQ1N30.nqoiq_1SqbxWmTVf3kiJOpwkTJPQ1Pb5bzZ1mTr6gN8';
+
+document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('wl-btn');
+  const success = document.getElementById('wl-success');
+  const error = document.getElementById('wl-error');
+
+  const name = document.getElementById('wl-name').value.trim();
+  const email = document.getElementById('wl-email').value.trim();
+  const skill = document.getElementById('wl-skill').value;
+  const instagram = document.getElementById('wl-instagram').value.trim().replace('@', '') || null;
+  const tiktok = document.getElementById('wl-tiktok').value.trim().replace('@', '') || null;
+
+  btn.textContent = 'Joining...';
+  btn.disabled = true;
+  error.style.display = 'none';
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ name, email, skill: skill || null, instagram, tiktok })
+    });
+
+    if (res.ok) {
+      document.getElementById('waitlist-form').style.display = 'none';
+      success.style.display = 'block';
+    } else {
+      const data = await res.json();
+      if (data.code === '23505') {
+        error.textContent = 'This email is already on the waitlist!';
+      } else {
+        error.textContent = 'Something went wrong. Please try again.';
+      }
+      error.style.display = 'block';
+      btn.textContent = 'Join the waitlist';
+      btn.disabled = false;
+    }
+  } catch (err) {
+    error.textContent = 'Network error. Please try again.';
+    error.style.display = 'block';
+    btn.textContent = 'Join the waitlist';
+    btn.disabled = false;
+  }
+});
+</script>
 
 <!-- FOOTER -->
 <footer>
