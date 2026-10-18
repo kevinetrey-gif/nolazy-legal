@@ -1096,14 +1096,7 @@ footer {
           The internet has every answer. What it doesn't have is a plan made for <em>you</em>. NoLazy cuts the noise and tells you exactly what to do next — week by week, skill by skill.
         </p>
 
-        <form class="waitlist-form" id="heroForm" onsubmit="handleSubmit(event,'heroSuccess')">
-          <input class="waitlist-input" type="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address">
-          <button class="btn btn-acc" type="submit">Get early access <svg><use href="#arr"/></svg></button>
-        </form>
-        <p class="join-note" id="heroSuccess" style="display:none">
-          <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="rgba(124,92,252,.15)"/><use href="#check" x="1" y="2" width="12" height="10"/></svg>
-          You're on the list! We'll notify you when we launch.
-        </p>
+        <a class="btn btn-acc" href="#waitlist" style="align-self:flex-start">Join the waitlist <svg><use href="#arr"/></svg></a>
         <p class="join-note">
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><use href="#lock-ic" x="1" y="1" width="12" height="12"/></svg>
           No spam. Unsubscribe anytime.
@@ -1322,9 +1315,11 @@ footer {
           </div>
         </div>
 
-        <form class="cta-form" id="ctaForm" onsubmit="handleSubmit(event,'ctaSuccess')">
-          <input class="cta-input" type="email" placeholder="Enter your email" required autocomplete="email" aria-label="Email address">
-          <button class="btn btn-acc" type="submit" style="flex-shrink:0">Claim my spot <svg><use href="#arr"/></svg></button>
+        <form class="cta-form" id="ctaForm" onsubmit="handleSubmit(event,'ctaSuccess')" style="flex-direction:column;align-items:stretch;max-width:420px;margin:0 auto;">
+          <input class="cta-input" type="text" placeholder="Your name" required autocomplete="name" aria-label="Name" style="margin-bottom:10px;">
+          <input class="cta-input" type="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address" style="margin-bottom:10px;">
+          <p id="skillError" style="display:none;color:#ffb3b3;font-size:13px;margin:0 0 8px 0;">⚠ Please select a skill above before joining.</p>
+          <button class="btn btn-acc" type="submit">Claim my spot <svg><use href="#arr"/></svg></button>
         </form>
         <p class="cta-note" id="ctaSuccess" style="display:none;color:rgba(255,255,255,.8)">
           ✓ You're in! We'll reach out before launch.
@@ -1541,8 +1536,19 @@ async function handleSubmit(e, successId) {
   const btn = form.querySelector('button[type="submit"]');
   const errorEl = form.parentElement.querySelector('.cta-error, .waitlist-error');
 
+  const nameInput = form.querySelector('input[type="text"]');
+  const name = nameInput ? nameInput.value.trim() : '';
   const email = form.querySelector('input[type="email"]').value.trim();
   const skill = document.querySelector('input[name="skill"]:checked')?.value || null;
+  const skillErrorEl = document.getElementById('skillError');
+
+  // Skill is required
+  if (!skill) {
+    if (skillErrorEl) { skillErrorEl.style.display = 'block'; }
+    document.getElementById('skillPicker')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  if (skillErrorEl) skillErrorEl.style.display = 'none';
 
   const origText = btn.innerHTML;
   btn.disabled = true;
@@ -1553,7 +1559,7 @@ async function handleSubmit(e, successId) {
     const res = await fetch(`${RAILWAY_URL}/api/waitlist/join`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, skill })
+      body: JSON.stringify({ name, email, skill })
     });
 
     if (res.status === 409) {
