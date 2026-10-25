@@ -1006,6 +1006,21 @@ footer {
   box-shadow: 0 4px 20px rgba(124,92,252,.4);
 }
 .skill-pick-emoji { font-size: 20px; line-height: 1; }
+.custom-skill {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 420px;
+  margin-inline: auto;
+}
+.custom-skill label {
+  color: rgba(255,255,255,.75);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+.custom-skill .cta-input { flex: none; width: 100%; }
 @media (max-width: 700px) {
   .skill-pick-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
 }
@@ -1204,7 +1219,7 @@ footer {
         <span class="cta-blob cb1" aria-hidden="true"></span>
         <span class="cta-blob cb2" aria-hidden="true"></span>
         <h2>What do you want to <em>build?</em></h2>
-        <p>Pick the skill you're most interested in and join the waitlist. We'll prioritize what you actually want.</p>
+        <p>Pick a skill, or type anything you want to learn, and join the waitlist. We'll prioritize what you actually want.</p>
 
         <div class="skill-picker rv" id="skillPicker">
           <div class="skill-pick-grid">
@@ -1309,12 +1324,17 @@ footer {
               <span class="skill-pick-label"><span class="skill-pick-emoji">✍️</span><span>Writing &amp; Publishing</span></span>
             </label>
           </div>
+
+          <div class="custom-skill">
+            <label for="customSkill">Don't see it? Type anything you want to learn</label>
+            <input class="cta-input" type="text" id="customSkill" maxlength="100" placeholder="e.g. public speaking, chess, math…" autocomplete="off">
+          </div>
         </div>
 
         <form class="cta-form" id="ctaForm" onsubmit="handleSubmit(event,'ctaSuccess')" style="flex-direction:column;align-items:stretch;max-width:420px;margin:0 auto;">
           <input class="cta-input" type="text" placeholder="Your name" required autocomplete="name" aria-label="Name" style="margin-bottom:10px;">
           <input class="cta-input" type="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address" style="margin-bottom:10px;">
-          <p id="skillError" style="display:none;color:#ffb3b3;font-size:13px;margin:0 0 8px 0;">⚠ Please select a skill above before joining.</p>
+          <p id="skillError" style="display:none;color:#ffb3b3;font-size:13px;margin:0 0 8px 0;">⚠ Pick a skill above or type one before joining.</p>
           <button class="btn btn-acc" type="submit">Claim my spot <svg><use href="#arr"/></svg></button>
         </form>
         <p class="cta-note" id="ctaSuccess" style="display:none;color:rgba(255,255,255,.8)">
@@ -1536,10 +1556,11 @@ async function handleSubmit(e, successId) {
   const name = nameInput ? nameInput.value.trim() : '';
   const email = form.querySelector('input[type="email"]').value.trim();
   const skill = document.querySelector('input[name="skill"]:checked')?.value || null;
+  const custom_skill = document.getElementById('customSkill')?.value.trim() || null;
   const skillErrorEl = document.getElementById('skillError');
 
-  // Skill is required
-  if (!skill) {
+  // At least one is required: a picked card OR a typed skill (or both)
+  if (!skill && !custom_skill) {
     if (skillErrorEl) { skillErrorEl.style.display = 'block'; }
     document.getElementById('skillPicker')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
@@ -1555,7 +1576,7 @@ async function handleSubmit(e, successId) {
     const res = await fetch(`${RAILWAY_URL}/api/waitlist/join`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, skill })
+      body: JSON.stringify({ name, email, skill, custom_skill })
     });
 
     if (res.status === 409) {
